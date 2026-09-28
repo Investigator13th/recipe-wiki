@@ -187,6 +187,7 @@ def search_abstracts(workspace_dir, query, top_k=5):
                     "tags": tags,
                     "abstract": abstract,
                     "time_str": time_str,
+                    "source_url": fm.get("source_url", ""),
                     "is_fallback": is_fallback,
                     "score": score
                 })
@@ -200,9 +201,10 @@ def search_abstracts(workspace_dir, query, top_k=5):
         for idx, item in enumerate(results, 1):
             tag_str = f" [{', '.join(item['tags'])}]" if item['tags'] else ""
             fallback_warn = " ⚠️(未配置规范Abstract，截取首部)" if item['is_fallback'] else ""
+            url_str = f"\n    📺 视频: {item['source_url']}" if item['source_url'] else ""
             print(f"[{idx}] 菜品: {item['name']}{item['time_str']}{tag_str}")
             print(f"    路径: {item['rel_path']}")
-            print(f"    摘要: {item['abstract']}{fallback_warn}")
+            print(f"    摘要: {item['abstract']}{fallback_warn}{url_str}")
             print()
         print("💡 下一步：评估上述摘要。若需深读做法，使用 --load '<rel_path>' 加载完整配方与步骤。")
     print("========================================================================")

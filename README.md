@@ -38,9 +38,9 @@
 
 也可以直接在终端跑脚本：
 
-* 🍳 **按现有食材配餐**：
+* 🍳 **按现有食材配餐（可附带视频链接）**：
   ```bash
-  python scripts/recipe_matcher.py --ingredients "鸡蛋,丝瓜,五花肉" --count 3
+  python scripts/recipe_matcher.py --ingredients "鸡蛋,丝瓜,五花肉" --count 3 --url
   ```
 * 🔍 **分层检索菜谱**：
   ```bash
@@ -82,8 +82,9 @@ recipe/
 │   ├── 阿蔡/
 │   └── 村驴/
 ├── wiki/                             # 结构化菜谱
-│   ├── index.md                      # 菜品分类索引
-│   └── dishes/                       # 单道菜卡片（77 篇）
+│   ├── index.md                      # 菜品与食材分类索引
+│   ├── dishes/                       # 单道菜卡片（77 篇）
+│   └── ingredients/                  # 食材挑选与预处理卡片（10 篇）
 └── scripts/                          # 辅助脚本
     ├── recipe_matcher.py             # 冰箱配餐引擎
     ├── wiki_search.py                # 菜谱受控检索

@@ -286,6 +286,7 @@ def main():
     parser.add_argument("--ingredients", "-i", required=True, help="现有食材，用逗号隔开，如：'鸡蛋,丝瓜,排骨'")
     parser.add_argument("--count", "-c", type=int, default=3, help="期望的菜品总数（如 2 菜、3 菜、4 菜，默认 3）")
     parser.add_argument("--no-soup", action="store_true", help="指定不需要汤羹（默认会自动搭配 1 道汤）")
+    parser.add_argument("--url", action="store_true", help="输出对应菜品原博主视频教程链接")
     args = parser.parse_args()
     
     user_ings = [x.strip() for x in re.split(r"[,，、\s]+", args.ingredients) if x.strip()]
@@ -330,6 +331,9 @@ def main():
         if item["missing_subs"]:
             print(f"    ℹ️ 建议补配料：{', '.join(item['missing_subs'])}")
             total_missing_subs.update(item["missing_subs"])
+            
+        if args.url and dish.get("source_url"):
+            print(f"    📺 视频教程：{dish.get('source_url')}")
             
     print("\n" + "-" * 65)
     print("🛒 【极简补料买菜清单】")
